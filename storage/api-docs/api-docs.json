@@ -1,0 +1,1807 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Health Manager API",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/doctors/{doctorId}": {
+            "get": {
+                "tags": [
+                    "Doctors"
+                ],
+                "summary": "Retrieve details by doctor",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Doctor"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Doctors"
+                ],
+                "summary": "Update doctor",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "priceGeneralConsulting": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string"
+                                    },
+                                    "academic_info": {
+                                        "type": "string"
+                                    },
+                                    "other_academic_info": {
+                                        "type": "string"
+                                    },
+                                    "professional_activities": {
+                                        "type": "string"
+                                    },
+                                    "societies": {
+                                        "type": "string"
+                                    },
+                                    "awards": {
+                                        "type": "string"
+                                    },
+                                    "other_activities": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Doctor"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/doctors": {
+            "get": {
+                "tags": [
+                    "Doctors"
+                ],
+                "summary": "Retrieve all doctors",
+                "parameters": [
+                    {
+                        "name": "hospitalId",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "stateId",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "specialityId",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "insurerId",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Doctor"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/register-doctor": {
+            "post": {
+                "tags": [
+                    "Doctors"
+                ],
+                "summary": "Register a new doctor",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string"
+                                    },
+                                    "professional_license": {
+                                        "type": "string"
+                                    },
+                                    "experience_summary": {
+                                        "type": "string"
+                                    },
+                                    "academic_info": {
+                                        "type": "string"
+                                    },
+                                    "other_academic_info": {
+                                        "type": "string"
+                                    },
+                                    "professional_activities": {
+                                        "type": "string"
+                                    },
+                                    "societies": {
+                                        "type": "string"
+                                    },
+                                    "awards": {
+                                        "type": "string"
+                                    },
+                                    "other_activities": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "api_token": {
+                                            "type": "string"
+                                        },
+                                        "doctor_id": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/doctors/{doctorId}/photo": {
+            "post": {
+                "tags": [
+                    "Doctors"
+                ],
+                "summary": "Update photo of a doctor",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "avatar": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Doctor"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/login-doctor": {
+            "post": {
+                "tags": [
+                    "Doctors"
+                ],
+                "summary": "Login a doctor",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "api_token": {
+                                            "type": "string"
+                                        },
+                                        "doctor_id": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/doctors/{doctorId}/photos": {
+            "get": {
+                "tags": [
+                    "Doctors"
+                ],
+                "summary": "Retrieve all photo doctors",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DoctorPhoto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Doctors"
+                ],
+                "summary": "Store a new photo",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "photo": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DoctorPhoto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/doctors/{doctorId}/photos/{photoId}": {
+            "delete": {
+                "tags": [
+                    "Doctors"
+                ],
+                "summary": "Delete a photo",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DoctorPhoto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/hospitals": {
+            "get": {
+                "tags": [
+                    "Catalogs"
+                ],
+                "summary": "Lists all hospitals",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Hospital"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/hospitals/{hospitalId}": {
+            "get": {
+                "tags": [
+                    "Catalogs"
+                ],
+                "summary": "Retrieve an hospital by id",
+                "parameters": [
+                    {
+                        "name": "hospitalId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Hospital"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/insurers": {
+            "get": {
+                "tags": [
+                    "Catalogs"
+                ],
+                "summary": "Lists all insurer companies",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Insurer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/insurers/{insurerId}": {
+            "get": {
+                "tags": [
+                    "Catalogs"
+                ],
+                "summary": "Retrieve a insurer company by id",
+                "parameters": [
+                    {
+                        "name": "insurerId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Insurer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/doctors/{doctorId}/insurers": {
+            "post": {
+                "tags": [
+                    "Doctors"
+                ],
+                "summary": "Attach an insurer to a doctor",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "insurerId": {
+                                        "type": "integer"
+                                    },
+                                    "cost": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Doctor"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/offices/": {
+            "get": {
+                "tags": [
+                    "Offices"
+                ],
+                "summary": "Lists all offices",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Office"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Offices"
+                ],
+                "summary": "Creates a new office",
+                "requestBody": {
+                    "request": "Office",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OfficeRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Office"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/offices/{officeId}/schedule": {
+            "get": {
+                "tags": [
+                    "Offices"
+                ],
+                "summary": "Fetch specific office schedule",
+                "parameters": [
+                    {
+                        "name": "doctorMedicalServiceId",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "date",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OfficeSchedule"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/offices/{officeId}/schedule/": {
+            "post": {
+                "tags": [
+                    "Offices"
+                ],
+                "summary": "Creates a new office schedule",
+                "parameters": [
+                    {
+                        "name": "officeId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "request": "Office",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OfficeScheduleRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Success message",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/offices/{officeId}/photos": {
+            "get": {
+                "tags": [
+                    "Offices"
+                ],
+                "summary": "Retrieve all office's photos",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OfficePhoto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/offices/{officeId}/photo": {
+            "post": {
+                "tags": [
+                    "Offices"
+                ],
+                "summary": "Upload an office's photo",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "avatar": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OfficePhoto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/offices/{officeId}/photos/{photoId}": {
+            "delete": {
+                "tags": [
+                    "Offices"
+                ],
+                "summary": "Delete an office's photo",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OfficePhoto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/patients": {
+            "get": {
+                "tags": [
+                    "Patients"
+                ],
+                "summary": "Lists all patients",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Patient"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/patients/{patientId}": {
+            "get": {
+                "tags": [
+                    "Patients"
+                ],
+                "summary": "Show a given patient",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Patient"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/patients/{patientId}/appointments": {
+            "get": {
+                "tags": [
+                    "Patients"
+                ],
+                "summary": "Lists all appointments of a given patient",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Appointment"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/patients/{patiendId}/photo": {
+            "post": {
+                "tags": [
+                    "Patients"
+                ],
+                "summary": "Update photo of a patient",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "avatar": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Patient"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/patients/{patiendId}/appointments": {
+            "post": {
+                "tags": [
+                    "Patients"
+                ],
+                "summary": "Add a new appointment to a given patient",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "hour": {
+                                        "type": "string",
+                                        "example": "12:20"
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "example": "12/12/2019"
+                                    },
+                                    "doctor_medical_service_id": {
+                                        "type": "string",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Appointment"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/patients/{patiendId}/update-profile": {
+            "put": {
+                "tags": [
+                    "Patients"
+                ],
+                "summary": "Update a candidate profile",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Juan Pérez"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "123456"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Patient"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/patients/{patientId}/favorite-doctors": {
+            "get": {
+                "tags": [
+                    "Patients"
+                ],
+                "summary": "Show favorite doctor for a given patient",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Doctor"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/register": {
+            "post": {
+                "tags": [
+                    "Patients"
+                ],
+                "summary": "Register a new patient",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/Patient"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/specialities": {
+            "get": {
+                "tags": [
+                    "Catalogs"
+                ],
+                "summary": "Lists all specialities",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Speciality"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/specialities/{specialityId}": {
+            "get": {
+                "tags": [
+                    "Catalogs"
+                ],
+                "summary": "Retrieve a speciality by id",
+                "parameters": [
+                    {
+                        "name": "specialityId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Speciality"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/states": {
+            "get": {
+                "tags": [
+                    "Catalogs"
+                ],
+                "summary": "Lists all states",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/State"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/states/{stateId}": {
+            "get": {
+                "tags": [
+                    "Catalogs"
+                ],
+                "summary": "Retrieve a state by id",
+                "parameters": [
+                    {
+                        "name": "stateId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/State"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/{userId}/cards": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Show credit cards for a given user",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Card"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Add a new card to a given user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "number": {
+                                        "type": "string",
+                                        "example": "132456789"
+                                    },
+                                    "expire_month": {
+                                        "type": "string",
+                                        "example": "19"
+                                    },
+                                    "expire_year": {
+                                        "type": "string",
+                                        "example": "19"
+                                    },
+                                    "type": {
+                                        "description": "Valid values: VISA,MASTERCARD,AMERICAN_EXPRESS,OTHER",
+                                        "type": "string",
+                                        "example": "MASTERCARD"
+                                    },
+                                    "cvv": {
+                                        "type": "string",
+                                        "example": "123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Card"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/{userId}/payments": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Show payments for a given user",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Payment"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Add a new payment to a given user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "amount": {
+                                        "type": "string"
+                                    },
+                                    "concept": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Payment"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Office": {
+                "properties": {
+                    "id": {
+                        "description": "The unique ID of this office",
+                        "type": "integer"
+                    },
+                    "longitude": {
+                        "type": "string"
+                    },
+                    "latitude": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "postal_code": {
+                        "type": "string"
+                    },
+                    "suburb": {
+                        "type": "string"
+                    },
+                    "city": {
+                        "type": "string"
+                    },
+                    "doctor_id": {
+                        "type": "integer"
+                    },
+                    "state": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "OfficeSchedule": {
+                "properties": {
+                    "date": {
+                        "description": "The date for this schedule",
+                        "type": "string"
+                    },
+                    "day": {
+                        "description": "The day for the schedule",
+                        "type": "integer"
+                    },
+                    "weekday": {
+                        "description": "The weekday for the schedule",
+                        "type": "string"
+                    },
+                    "month": {
+                        "description": "The month for the schedule",
+                        "type": "string"
+                    },
+                    "schedule": {
+                        "description": "The avatar photo of this doctor",
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "hour": {
+                                    "description": "The schedule specific hour",
+                                    "type": "string"
+                                },
+                                "status": {
+                                    "description": "The availability status for the schedule",
+                                    "type": "string"
+                                },
+                                "init": {
+                                    "description": "The init hour for the schedule",
+                                    "type": "string"
+                                },
+                                "end": {
+                                    "description": "The end hour for the schedule",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "OfficeRequest": {
+                "properties": {
+                    "stateId": {
+                        "description": "The state ID for the office",
+                        "type": "integer"
+                    },
+                    "doctorId": {
+                        "description": "The owner doctor ID",
+                        "type": "integer"
+                    },
+                    "description": {
+                        "description": "Brief description of the office",
+                        "type": "string"
+                    },
+                    "address": {
+                        "description": "Office's address with street and number",
+                        "type": "string"
+                    },
+                    "postalCode": {
+                        "description": "Office's postal code",
+                        "type": "string"
+                    },
+                    "suburb": {
+                        "description": "Office's suburb",
+                        "type": "string"
+                    },
+                    "addressReference": {
+                        "description": "Office's address reference, e.g. 'Entre calles A y B'",
+                        "type": "string"
+                    },
+                    "city": {
+                        "description": "Office's city",
+                        "type": "string"
+                    },
+                    "contactPhone": {
+                        "description": "Office's contact phone",
+                        "type": "string"
+                    },
+                    "latitude": {
+                        "description": "Office's location latitude",
+                        "type": "string"
+                    },
+                    "longitude": {
+                        "description": "Office's location longitude",
+                        "type": "string"
+                    },
+                    "officeType": {
+                        "description": "Office type, can be MATRIX or BRANCH",
+                        "type": "string"
+                    },
+                    "hospitalId": {
+                        "description": "If the office is placed in hospital",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "OfficeScheduleRequest": {
+                "properties": {
+                    "weekDay": {
+                        "description": "Schedule's weekday",
+                        "type": "integer"
+                    },
+                    "startHour": {
+                        "description": "Schedule's start hour",
+                        "type": "string"
+                    },
+                    "endHour": {
+                        "description": "Schedule's end hour",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "DoctorPhoto": {
+                "properties": {
+                    "id": {
+                        "description": "The unique ID of this office",
+                        "type": "integer"
+                    },
+                    "doctor_id": {
+                        "type": "integer"
+                    },
+                    "url": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Hospital": {
+                "properties": {
+                    "id": {
+                        "description": "The unique ID of this hospital",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "The name of hospital",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Insurer": {
+                "properties": {
+                    "id": {
+                        "description": "The unique ID of this insurer",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "The company name",
+                        "type": "string"
+                    },
+                    "status": {
+                        "description": "The company name",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "OfficePhoto": {
+                "properties": {
+                    "id": {
+                        "description": "The unique ID of this office",
+                        "type": "integer"
+                    },
+                    "office_id": {
+                        "type": "integer"
+                    },
+                    "url": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "State": {
+                "properties": {
+                    "id": {
+                        "description": "The state ID",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "The state name",
+                        "type": "string"
+                    },
+                    "status": {
+                        "description": "The state code",
+                        "type": "code"
+                    }
+                },
+                "type": "object"
+            },
+            "Appointment": {
+                "properties": {
+                    "id": {
+                        "description": "The unique ID of this office",
+                        "type": "integer"
+                    },
+                    "office": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/Office"
+                    },
+                    "hour": {
+                        "description": "The hour in 24 format",
+                        "type": "string",
+                        "example": "17:30"
+                    },
+                    "date": {
+                        "description": "The date in dd/mm/yyyy format",
+                        "type": "string",
+                        "example": "06/06/2006"
+                    },
+                    "doctor_medical_service_id": {
+                        "description": "The medical service associated to the doctor",
+                        "type": "integer"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    },
+                    "cost": {
+                        "type": "string"
+                    },
+                    "duration": {
+                        "type": "string"
+                    },
+                    "medical_service": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/MedicalService"
+                    }
+                },
+                "type": "object"
+            },
+            "Card": {
+                "properties": {
+                    "id": {
+                        "description": "The unique ID of this card",
+                        "type": "integer"
+                    },
+                    "user_id": {
+                        "type": "integer"
+                    },
+                    "number": {
+                        "description": "The last 4 digits of card",
+                        "type": "string",
+                        "example": "1234"
+                    },
+                    "expire_month": {
+                        "type": "string",
+                        "example": "06"
+                    },
+                    "expire_year": {
+                        "type": "string",
+                        "example": "19"
+                    },
+                    "type": {
+                        "description": "Could be: VISA,MASTERCARD,AMERICAN_EXPRESS,OTHER",
+                        "type": "string",
+                        "example": "MASTERCARD"
+                    }
+                },
+                "type": "object"
+            },
+            "DoctorMedicalService": {
+                "properties": {
+                    "id": {
+                        "description": "The unique ID of this doctor",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "The name of this doctor",
+                        "type": "string"
+                    },
+                    "avatar_url": {
+                        "description": "The avatar photo of this doctor",
+                        "type": "string"
+                    },
+                    "professional_license": {
+                        "description": "The professional license of this doctor",
+                        "type": "string"
+                    },
+                    "specialities": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Speciality"
+                        }
+                    },
+                    "offices": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Office"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Doctor": {
+                "properties": {
+                    "id": {
+                        "description": "The unique ID of this doctor",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "The name of this doctor",
+                        "type": "string"
+                    },
+                    "avatar_url": {
+                        "description": "The avatar photo of this doctor",
+                        "type": "string"
+                    },
+                    "professional_license": {
+                        "description": "The professional license of this doctor",
+                        "type": "string"
+                    },
+                    "academic_info": {
+                        "description": "The academic info of this doctor",
+                        "type": "string"
+                    },
+                    "other_academic_info": {
+                        "description": "Other academic info of this doctor",
+                        "type": "string"
+                    },
+                    "professional_activities": {
+                        "description": "The professional activities of this doctor",
+                        "type": "string"
+                    },
+                    "societies": {
+                        "description": "The belong societies of this doctor",
+                        "type": "string"
+                    },
+                    "awards": {
+                        "description": "The awards of this doctor",
+                        "type": "string"
+                    },
+                    "ohter_activities": {
+                        "description": "Other activities of this doctor",
+                        "type": "string"
+                    },
+                    "specialities": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Speciality"
+                        }
+                    },
+                    "offices": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Office"
+                        }
+                    },
+                    "experience_summary": {
+                        "type": "string"
+                    },
+                    "medical_services": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/DoctorMedicalService"
+                        }
+                    },
+                    "priceGeneralConsulting": {
+                        "type": "string"
+                    },
+                    "opinions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Opinion"
+                        }
+                    },
+                    "rate": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "MedicalService": {
+                "properties": {
+                    "id": {
+                        "description": "The unique ID of this office",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Opinion": {
+                "properties": {
+                    "id": {
+                        "description": "The unique ID of this opinion",
+                        "type": "integer"
+                    },
+                    "commentaries": {
+                        "description": "The commentaries of this opinion",
+                        "type": "string"
+                    },
+                    "rate": {
+                        "description": "The rate of this opinion",
+                        "type": "string"
+                    },
+                    "commenter_name": {
+                        "description": "The name of the user who comments",
+                        "type": "string"
+                    },
+                    "commenter_id": {
+                        "description": "The id of the user who comments",
+                        "type": "integer"
+                    },
+                    "date": {
+                        "description": "The date of the comment",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Patient": {
+                "properties": {
+                    "id": {
+                        "description": "The unique ID of this patient",
+                        "type": "integer"
+                    },
+                    "user_id": {
+                        "description": "The unique user id associated",
+                        "type": "integer"
+                    },
+                    "user": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/User"
+                    }
+                },
+                "type": "object"
+            },
+            "Payment": {
+                "properties": {
+                    "id": {
+                        "description": "The unique ID of this payment",
+                        "type": "integer"
+                    },
+                    "user_id": {
+                        "type": "integer"
+                    },
+                    "amount": {
+                        "type": "string"
+                    },
+                    "concept": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Speciality": {
+                "properties": {
+                    "id": {
+                        "description": "The unique ID of this speciality",
+                        "type": "integer"
+                    },
+                    "description": {
+                        "description": "The description of this speciality",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "properties": {
+                    "id": {
+                        "description": "The unique ID of this user",
+                        "type": "integer"
+                    },
+                    "email": {
+                        "description": "The unique email of this user",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "The name of this user",
+                        "type": "string"
+                    },
+                    "avatar_url": {
+                        "description": "The avatar photo of this user",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}
